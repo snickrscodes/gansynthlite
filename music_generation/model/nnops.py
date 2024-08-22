@@ -241,14 +241,6 @@ def log(x, base):
 def lerp(a, b, t):
     return a + (b - a) * t
 
-# unused
-
-def embedding(input, units):
-    shape = input.shape.as_list()
-    if 'embedding_'+str(units) not in vars:
-        vars['embedding_'+str(units)] = tf.Variable(keras.initializers.RandomNormal()(shape=(shape[-1], units)), trainable=True, name='embedding_'+str(units))
-    return tf.nn.embedding_lookup(get_weight('embedding_'+str(units)), tf.argmax(input, axis=-1))
-
 def interpolate(points: list[tuple], xi: int, n: int) -> float:
     result = 0.0
     for i in range(n):
